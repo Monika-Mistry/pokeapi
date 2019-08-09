@@ -3,7 +3,9 @@ package com.bae.domain;
 import java.sql.Timestamp;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "searchHistory")
 public class SentHistory {
 	
 	@Id
