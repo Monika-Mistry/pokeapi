@@ -3,16 +3,28 @@ package com.bae.domain;
 import java.sql.Timestamp;
 
 public class SentHistory {
-	
+
 	private Long id;
-	
+
 	private String memberNumber;
-	
+
 	private String name;
-	
+
 	private String searchTerm;
-	
+
 	private Timestamp timestamp;
+
+	public SentHistory() {
+	
+	}
+
+	public SentHistory(History history) {
+		this.id = history.getId();
+		this.memberNumber = history.getMemberNumber();
+		this.name = history.getName();
+		this.searchTerm = history.getSearchTerm();
+		this.timestamp = history.getTimestamp();
+	}
 
 	public Long getId() {
 		return id;
@@ -52,6 +64,6 @@ public class SentHistory {
 
 	public void setTimestamp(Timestamp timestamp) {
 		this.timestamp = timestamp;
-	}	
+	}
 
 }
