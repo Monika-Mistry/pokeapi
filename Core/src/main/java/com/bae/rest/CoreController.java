@@ -41,8 +41,6 @@ public class CoreController {
 	public ResponseEntity<User> createUser(@RequestBody User user) {
 		
 		HttpEntity<User> requestEntity = new HttpEntity<>(user);
-		
-//		return new ResponseEntity<User>(user, HttpStatus.CREATED);
 		return restTemplate.exchange(userURL + createUserPath, HttpMethod.POST, requestEntity, User.class);
 
 	}
