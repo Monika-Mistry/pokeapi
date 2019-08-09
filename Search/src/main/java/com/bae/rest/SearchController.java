@@ -35,17 +35,17 @@ public class SearchController {
 		return restTemplate.exchange(pokeApiURL + id, HttpMethod.GET, entity, Object.class);
 	}
 
-	@GetMapping("/{userId}/searchByName/{name}")
-	public ResponseEntity<Object> findByName(@PathVariable("name") String name) {
-		HttpHeaders headers = new HttpHeaders();
-		headers.add("user-agent",
-				"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
-
-		
-		HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
-		
-		return restTemplate.exchange(pokeApiURL + name, HttpMethod.GET, entity, Object.class);
-
-	}
+//	@GetMapping("/{userId}/searchByName/{name}")
+//	public ResponseEntity<Object> findByName(@PathVariable("name") String name) {
+//		HttpHeaders headers = new HttpHeaders();
+//		headers.add("user-agent",
+//				"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
+//
+//		
+//		HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
+//		
+//		return restTemplate.exchange(pokeApiURL + name, HttpMethod.GET, entity, Object.class);
+//
+//	}
 
 }

@@ -5,9 +5,7 @@ import java.sql.Timestamp;
 public class History {
 	private Long id;
 
-	private String memberNumber;
-
-	private String name;
+	private Long userId;
 
 	private String searchTerm;
 
@@ -18,11 +16,10 @@ public class History {
 	}
 	
 
-	public History(Long id, String memberNumber, String name, String searchTerm, Timestamp timestamp) {
+	public History(Long id, Long userId, String searchTerm, Timestamp timestamp) {
 		super();
 		this.id = id;
-		this.memberNumber = memberNumber;
-		this.name = name;
+		this.userId = userId;
 		this.searchTerm = searchTerm;
 		this.timestamp = timestamp;
 	}
@@ -37,21 +34,16 @@ public class History {
 		this.id = id;
 	}
 
-	public String getMemberNumber() {
-		return memberNumber;
+
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setMemberNumber(String memberNumber) {
-		this.memberNumber = memberNumber;
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
 
 	public String getSearchTerm() {
 		return searchTerm;

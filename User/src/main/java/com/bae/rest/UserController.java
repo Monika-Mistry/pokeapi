@@ -30,7 +30,7 @@ public class UserController {
 	public ResponseEntity<Boolean> doesUserExist(@PathVariable("userId") Long id) {
 		return new ResponseEntity<Boolean>(service.userIdExists(id), HttpStatus.OK);
 	}
-	
+		
 	@PostMapping
 	public ResponseEntity<User> createUser(@RequestBody User user) {
 		return new ResponseEntity<User>(service.createUser(user), HttpStatus.CREATED);

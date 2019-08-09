@@ -24,4 +24,9 @@ public class UserServiceImpl implements UserService{
 		return repository.save(user);
 	}
 
+
+	public User findById(Long id) {
+		return repository.findById(id).get();
+	}
+
 }

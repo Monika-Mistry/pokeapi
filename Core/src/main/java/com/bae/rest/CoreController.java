@@ -1,6 +1,7 @@
 package com.bae.rest;
 
 import java.awt.PageAttributes.MediaType;
+import java.sql.Timestamp;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,7 @@ public class CoreController {
 	@Value("${url.history}")
 	private String historyURL;
 
-	@Value("${path.history}")
+	@Value("${path.historyPath}")
 	private String historyPath;
 
 	private RestTemplate restTemplate;
@@ -74,19 +75,17 @@ public class CoreController {
 				Boolean.class);
 
 		if (user.getBody().booleanValue()) {
-
-			// TODO: add in link to producer
-			sendToProducer(new History());
+			sendToProducer(new History(userId, pokeId, new Timestamp(System.currentTimeMillis())));
 
 			return restTemplate.exchange(searchURL + idSearchPath + pokeId, HttpMethod.GET, null, Object.class);
 		} else {
 			return new ResponseEntity<Object>("User does not exist", HttpStatus.OK);
 		}
 	}
-	
-	@GetMapping("/{userId}/searchByName/{name}")
-	public ResponseEntity<Object> searchByName(@PathVariable("userId") Long userId,
-			@PathVariable("name") String name) {
+//	
+//	@GetMapping("/{userId}/searchByName/{name}")
+//	public ResponseEntity<Object> searchByName(@PathVariable("userId") Long userId,
+//			@PathVariable("name") String name) {
 //
 //		ResponseEntity<Boolean> user = restTemplate.exchange(userURL + userExistsPath + userId, HttpMethod.GET, null,
 //				Boolean.class);
@@ -95,15 +94,15 @@ public class CoreController {
 //
 //			// TODO: add in link to producer
 //			sendToProducer(new History());
-
-			return restTemplate.exchange(searchURL + nameSearchPath + name, HttpMethod.GET, null, Object.class);
+//
+//			return restTemplate.exchange(searchURL + nameSearchPath + name, HttpMethod.GET, null, Object.class);
 //		} else {
 //			return new ResponseEntity<Object>("User does not exist", HttpStatus.OK);
 //		}
-	}
+//	}
 
 	@PostMapping("/history")
-	private ResponseEntity<History> sendToProducer(History history) {
+	public ResponseEntity<History> sendToProducer(History history) {
 		HttpEntity<History> requestEntity = new HttpEntity<>(history);
 		return restTemplate.exchange(historyURL + historyPath, HttpMethod.POST, requestEntity, History.class);
 
