@@ -12,6 +12,22 @@ public class History {
 	private String searchTerm;
 
 	private Timestamp timestamp;
+	
+	public History() {
+		
+	}
+	
+
+	public History(Long id, String memberNumber, String name, String searchTerm, Timestamp timestamp) {
+		super();
+		this.id = id;
+		this.memberNumber = memberNumber;
+		this.name = name;
+		this.searchTerm = searchTerm;
+		this.timestamp = timestamp;
+	}
+
+
 
 	public Long getId() {
 		return id;
