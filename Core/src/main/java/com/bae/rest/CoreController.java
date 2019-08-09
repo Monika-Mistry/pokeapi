@@ -1,7 +1,12 @@
 package com.bae.rest;
 
+import java.awt.PageAttributes.MediaType;
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +28,9 @@ public class CoreController {
 	@Value("${path.userExists}")
 	private String userExistsPath;
 	
+	@Value("${path.createUser}")
+	private String createUserPath;
+	
 	private RestTemplate restTemplate;
 
 	public CoreController(@Autowired RestTemplate restTemplate) {
@@ -31,13 +39,17 @@ public class CoreController {
 
 	@PostMapping
 	public ResponseEntity<User> createUser(@RequestBody User user) {
-		return new ResponseEntity<User>(user, HttpStatus.CREATED);
+		
+		HttpEntity<User> requestEntity = new HttpEntity<>(user);
+		
+//		return new ResponseEntity<User>(user, HttpStatus.CREATED);
+		return restTemplate.exchange(userURL + createUserPath, HttpMethod.POST, requestEntity, User.class);
 
 	}
 
 	@GetMapping("/{userId}")
-	public boolean doesUserExist(@PathVariable("userId") Long id) {
-		return restTemplate.exchange(userURL + userExistsPath + id, HttpMethod.GET, null, boolean.class);
+	public ResponseEntity<Boolean> doesUserExist(@PathVariable("userId") Long id) {
+		return restTemplate.exchange(userURL + userExistsPath + id, HttpMethod.GET, null, Boolean.class);
 	}
 
 }
