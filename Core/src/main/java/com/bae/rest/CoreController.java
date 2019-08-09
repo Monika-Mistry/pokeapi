@@ -40,6 +40,12 @@ public class CoreController {
 	
 	@Value("${path.nameSearch}")
 	private String nameSearchPath;
+	
+	@Value("${url.history}")
+	private String historyURL;
+
+	@Value("${path.history}")
+	private String historyPath;
 
 	private RestTemplate restTemplate;
 
@@ -96,8 +102,10 @@ public class CoreController {
 //		}
 	}
 
-	// TODO: finish method
-	private void sendToProducer(History history) {
+	@PostMapping("/history")
+	private ResponseEntity<History> sendToProducer(History history) {
+		HttpEntity<History> requestEntity = new HttpEntity<>(history);
+		return restTemplate.exchange(historyURL + historyPath, HttpMethod.POST, requestEntity, History.class);
 
 	}
 
