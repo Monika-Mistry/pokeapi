@@ -23,7 +23,6 @@ public class SearchController {
 		this.restTemplate = restTemplate;
 	}
 
-//	@GetMapping("/poke/{pokeId}")
 	@GetMapping("/{userId}/{pokeId}")
 	public ResponseEntity<Object> findById(@PathVariable("id") String id) {
 
@@ -36,7 +35,7 @@ public class SearchController {
 		return restTemplate.exchange(pokeApiURL + id, HttpMethod.GET, entity, Object.class);
 	}
 
-	@GetMapping("/{name}")
+	@GetMapping("/{userId}/searchByName/{name}")
 	public ResponseEntity<Object> findByName(@PathVariable("name") String name) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("user-agent",

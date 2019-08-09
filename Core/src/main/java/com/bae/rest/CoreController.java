@@ -37,6 +37,9 @@ public class CoreController {
 
 	@Value("${path.idSearch}")
 	private String idSearchPath;
+	
+	@Value("${path.nameSearch}")
+	private String nameSearchPath;
 
 	private RestTemplate restTemplate;
 
@@ -60,31 +63,42 @@ public class CoreController {
 	@GetMapping("/{userId}/{pokeId}")
 	public ResponseEntity<Object> searchById(@PathVariable("userId") Long userId,
 			@PathVariable("pokeId") String pokeId) {
-		
+
 		ResponseEntity<Boolean> user = restTemplate.exchange(userURL + userExistsPath + userId, HttpMethod.GET, null,
 				Boolean.class);
 
 		if (user.getBody().booleanValue()) {
-			
-			//TODO: add in link to producer
+
+			// TODO: add in link to producer
 			sendToProducer(new History());
-			
+
 			return restTemplate.exchange(searchURL + idSearchPath + pokeId, HttpMethod.GET, null, Object.class);
 		} else {
 			return new ResponseEntity<Object>("User does not exist", HttpStatus.OK);
 		}
 	}
-//
-//	@GetMapping("/poke/{pokeId}")
-//	public ResponseEntity<Object> searchById(@PathVariable("pokeId") String pokeId) {
-//
-//		return restTemplate.exchange(searchURL + idSearchPath + pokeId, HttpMethod.GET, null, Object.class);
-//
-//	}
 	
-	//TODO: finish method
+	@GetMapping("/{userId}/searchByName/{name}")
+	public ResponseEntity<Object> searchByName(@PathVariable("userId") Long userId,
+			@PathVariable("name") String name) {
+//
+//		ResponseEntity<Boolean> user = restTemplate.exchange(userURL + userExistsPath + userId, HttpMethod.GET, null,
+//				Boolean.class);
+//
+//		if (user.getBody().booleanValue()) {
+//
+//			// TODO: add in link to producer
+//			sendToProducer(new History());
+
+			return restTemplate.exchange(searchURL + nameSearchPath + name, HttpMethod.GET, null, Object.class);
+//		} else {
+//			return new ResponseEntity<Object>("User does not exist", HttpStatus.OK);
+//		}
+	}
+
+	// TODO: finish method
 	private void sendToProducer(History history) {
-		
+
 	}
 
 }
