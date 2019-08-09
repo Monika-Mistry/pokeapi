@@ -13,13 +13,13 @@ import com.bae.domain.SentHistory;
 
 @RestController
 public class HistoryController {
-	
+
 	@Value("${url.user}")
 	private String userURL;
-	
+
 	@Value("${path.getHistory}")
 	private String getHistoryPath;
-	
+
 	private JmsTemplate jmsTemplate;
 	private RestTemplate restTemplate;
 
@@ -27,17 +27,17 @@ public class HistoryController {
 		this.jmsTemplate = jmsTemplate;
 		this.restTemplate = restTemplate;
 	}
-	
+
 	@GetMapping
 	public ResponseEntity<History> getHistory() {
 		ResponseEntity<History> history = restTemplate.getForEntity(userURL + getHistoryPath, History.class);
 		
-		sendToQueue(history.getBody());
-		
+		History historyToStore = history.getBody();
+		sendToQueue(historyToStore);
+
 		return history;
 	}
-	
-	
+
 	private void sendToQueue(History history) {
 		SentHistory historyToStore = new SentHistory(history);
 		jmsTemplate.convertAndSend("HistoryQueue", historyToStore);
