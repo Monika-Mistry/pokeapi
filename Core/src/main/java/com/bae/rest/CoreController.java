@@ -24,13 +24,19 @@ public class CoreController {
 
 	@Value("${url.userURL}")
 	private String userURL;
-	
+
 	@Value("${path.userExists}")
 	private String userExistsPath;
-	
+
 	@Value("${path.createUser}")
 	private String createUserPath;
-	
+
+	@Value("${url.searchURL}")
+	private String searchURL;
+
+	@Value("${path.idSearch}")
+	private String idSearchPath;
+
 	private RestTemplate restTemplate;
 
 	public CoreController(@Autowired RestTemplate restTemplate) {
@@ -39,15 +45,35 @@ public class CoreController {
 
 	@PostMapping
 	public ResponseEntity<User> createUser(@RequestBody User user) {
-		
+
 		HttpEntity<User> requestEntity = new HttpEntity<>(user);
 		return restTemplate.exchange(userURL + createUserPath, HttpMethod.POST, requestEntity, User.class);
 
 	}
 
 	@GetMapping("/{userId}")
-	public ResponseEntity<Boolean> doesUserExist(@PathVariable("userId") Long id) {
-		return restTemplate.exchange(userURL + userExistsPath + id, HttpMethod.GET, null, Boolean.class);
+	public ResponseEntity<Boolean> doesUserExist(@PathVariable("userId") Long userId) {
+		return restTemplate.exchange(userURL + userExistsPath + userId, HttpMethod.GET, null, Boolean.class);
+	}
+
+	@GetMapping("/{userId}/{pokeId}")
+	public ResponseEntity<Object> searchById(@PathVariable("userId") Long userId,
+			@PathVariable("pokeId") String pokeId) {
+		ResponseEntity<Boolean> user = restTemplate.exchange(userURL + userExistsPath + userId, HttpMethod.GET, null,
+				Boolean.class);
+
+		if (user.getBody().booleanValue()) {
+			return restTemplate.exchange(searchURL + idSearchPath + pokeId, HttpMethod.GET, null, Object.class);
+		} else {
+			return new ResponseEntity<Object>("User does not exist", HttpStatus.OK);
+		}
+	}
+
+	@GetMapping("/poke/{pokeId}")
+	public ResponseEntity<Object> searchById(@PathVariable("pokeId") String pokeId) {
+
+		return restTemplate.exchange(searchURL + idSearchPath + pokeId, HttpMethod.GET, null, Object.class);
+
 	}
 
 }
