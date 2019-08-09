@@ -1,7 +1,7 @@
 # pokeapi
 
 # Project Architecture
-![Project Architecture Diagram](https://user-images.githubusercontent.com/22007575/62767266-33dfbf00-ba8c-11e9-9003-490be8bdff42.PNG)
+![Project Architecture Diagram](https://user-images.githubusercontent.com/22007575/62773974-79f04f00-ba9b-11e9-804e-3155b092ccee.PNG)
 
 # MicroServices
 ### Mongo DB
