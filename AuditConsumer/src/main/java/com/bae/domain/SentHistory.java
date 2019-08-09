@@ -7,7 +7,7 @@ import org.springframework.data.annotation.Id;
 public class SentHistory {
 	
 	@Id
-	private int id;
+	private Long id;
 	
 	private String memberNumber;
 	
@@ -17,11 +17,11 @@ public class SentHistory {
 	
 	private Timestamp timestamp;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -55,9 +55,6 @@ public class SentHistory {
 
 	public void setTimestamp(Timestamp timestamp) {
 		this.timestamp = timestamp;
-	}
-	
-	
-	
+	}	
 
 }
