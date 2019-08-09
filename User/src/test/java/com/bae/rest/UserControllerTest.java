@@ -39,7 +39,7 @@ public class UserControllerTest {
 	public void findUserThatExists() {
 		doReturn(true).when(service).userIdExists(1L);
 
-		assertEquals(true, controller.doesUserExist(1L));
+		assertEquals(TestConstants.MOCK_USER_EXISTS, controller.doesUserExist(1L));
 
 		verify(service).userIdExists(1L);
 	}
@@ -48,7 +48,7 @@ public class UserControllerTest {
 	public void findUserThatDoesNotExist() {
 		doReturn(false).when(service).userIdExists(2L);
 
-		assertEquals(false, controller.doesUserExist(2L));
+		assertEquals(TestConstants.MOCK_USER_NOT_EXISTS, controller.doesUserExist(2L));
 
 		verify(service).userIdExists(2L);
 	}

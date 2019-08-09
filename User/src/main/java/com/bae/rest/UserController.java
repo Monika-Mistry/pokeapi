@@ -26,9 +26,9 @@ public class UserController {
 	}
 
 	
-	@GetMapping("/{id}")
-	public boolean doesUserExist(@PathVariable("id") Long id) {
-		return service.userIdExists(id);
+	@GetMapping("/{userId}")
+	public ResponseEntity<Boolean> doesUserExist(@PathVariable("userId") Long id) {
+		return new ResponseEntity<Boolean>(service.userIdExists(id), HttpStatus.OK);
 	}
 	
 	@PostMapping
