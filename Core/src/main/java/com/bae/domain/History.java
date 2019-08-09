@@ -19,9 +19,8 @@ public class History {
 	}
 	
 
-	public History(Long id, String memberNumber, String name, String searchTerm, Timestamp timestamp) {
+	public History(String memberNumber, String name, String searchTerm, Timestamp timestamp) {
 		super();
-		this.id = id;
 		this.memberNumber = memberNumber;
 		this.name = name;
 		this.searchTerm = searchTerm;
