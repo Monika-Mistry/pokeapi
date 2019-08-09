@@ -6,9 +6,8 @@ public class SentHistory {
 
 	private Long id;
 
-	private String memberNumber;
+	private Long userId;
 
-	private String name;
 
 	private String searchTerm;
 
@@ -20,8 +19,7 @@ public class SentHistory {
 
 	public SentHistory(History history) {
 		this.id = history.getId();
-		this.memberNumber = history.getMemberNumber();
-		this.name = history.getName();
+		this.userId = history.getUserId();
 		this.searchTerm = history.getSearchTerm();
 		this.timestamp = history.getTimestamp();
 	}
@@ -34,20 +32,13 @@ public class SentHistory {
 		this.id = id;
 	}
 
-	public String getMemberNumber() {
-		return memberNumber;
+
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setMemberNumber(String memberNumber) {
-		this.memberNumber = memberNumber;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	public String getSearchTerm() {

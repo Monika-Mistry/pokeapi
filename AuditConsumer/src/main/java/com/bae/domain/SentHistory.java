@@ -10,14 +10,14 @@ public class SentHistory {
 	
 	@Id
 	private Long id;
-	
-	private String memberNumber;
-	
-	private String name;
-	
+
+	private Long userId;
+
 	private String searchTerm;
-	
+
 	private Timestamp timestamp;
+
+
 
 	public Long getId() {
 		return id;
@@ -27,20 +27,13 @@ public class SentHistory {
 		this.id = id;
 	}
 
-	public String getMemberNumber() {
-		return memberNumber;
+
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setMemberNumber(String memberNumber) {
-		this.memberNumber = memberNumber;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	public String getSearchTerm() {
@@ -57,6 +50,6 @@ public class SentHistory {
 
 	public void setTimestamp(Timestamp timestamp) {
 		this.timestamp = timestamp;
-	}	
+	}
 
 }
