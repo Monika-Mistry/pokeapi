@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.bae.domain.History;
 import com.bae.domain.User;
 
 @RestController
@@ -63,6 +64,8 @@ public class CoreController {
 				Boolean.class);
 
 		if (user.getBody().booleanValue()) {
+			//TODO: add in link to producer
+			sendToProducer(new History());
 			return restTemplate.exchange(searchURL + idSearchPath + pokeId, HttpMethod.GET, null, Object.class);
 		} else {
 			return new ResponseEntity<Object>("User does not exist", HttpStatus.OK);
@@ -74,6 +77,11 @@ public class CoreController {
 
 		return restTemplate.exchange(searchURL + idSearchPath + pokeId, HttpMethod.GET, null, Object.class);
 
+	}
+	
+	//TODO: finish method
+	private void sendToProducer(History history) {
+		
 	}
 
 }
