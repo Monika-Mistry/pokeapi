@@ -4,7 +4,7 @@ import com.bae.domain.User;
 
 public interface UserService {
 	
-	public User findById(Long id);
+	public boolean userIdExists(Long id);
 	public User createUser(User user);
 	
 
