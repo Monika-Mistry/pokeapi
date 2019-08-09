@@ -23,7 +23,8 @@ public class SearchController {
 		this.restTemplate = restTemplate;
 	}
 
-	@GetMapping("/{id}")
+//	@GetMapping("/poke/{pokeId}")
+	@GetMapping("/{userId}/{pokeId}")
 	public ResponseEntity<Object> findById(@PathVariable("id") String id) {
 
 		HttpHeaders headers = new HttpHeaders();
