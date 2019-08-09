@@ -33,7 +33,7 @@ public class HistoryControllerTest {
 	public void getHistoryTest() {
 		doReturn(TestConstants.MOCK_HISTORY_RESPONSE).when(restTemplate).getForEntity(TestConstants.MOCK_GETHISTORY_URL, History.class);
 		
-		assertEquals(TestConstants.MOCK_HISTORY_RESPONSE, controller.getHistory());
+		assertEquals(TestConstants.MOCK_HISTORY_RESPONSE, controller.getHistory(TestConstants.MOCK_HISTORY));
 		
 		verify(restTemplate).getForEntity(TestConstants.MOCK_GETHISTORY_URL, History.class);
 	}
