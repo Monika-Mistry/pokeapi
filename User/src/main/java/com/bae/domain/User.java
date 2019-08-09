@@ -16,6 +16,16 @@ public class User {
 	
 	private String name;
 
+	public User(long id, String memberNumber, String name) {
+		this.id = id;
+		this.memberNumber = memberNumber;
+		this.name = name;
+	}
+	
+	public User() {
+
+	}
+
 	public Long getId() {
 		return id;
 	}
